@@ -32,6 +32,7 @@ module dds_test;
 	// Outputs
 	wire divide_clk;
 	wire [31:0] cnt;
+	wire real_clk;
 
 	// Instantiate the Unit Under Test (UUT)
 	dds uut (
@@ -39,19 +40,21 @@ module dds_test;
 		.clk(clk), 
 		.rst(rst), 
 		.divide_clk(divide_clk), 
-		.cnt(cnt)
+		.cnt(cnt),
+		.real_clk(real_clk)
 	);
 
 	initial begin
 		// Initialize Inputs
 		note_bin = 0;
 		clk = 0;
-		rst = 1;
+		rst = 0;
+		real_clk = 0;
 		// Wait 100 ns for global reset to finish
 		#100;
         
 		// Add stimulus here
-		note_bin = 2;
+		note_bin = 3'b011;
 	end
 
 always #250 clk = ~clk;
